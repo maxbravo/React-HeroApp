@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { heroImages } from "../../helpers/heroImages";
+
 
 export const HeroCard = ({
   id,
@@ -9,7 +11,8 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const imagePath = `/assets/${id}.jpg`;
+  const imagePath = heroImages(`./${id}.jpg`); // lamo la imagen utilizando el helper que utilizar el webpackage
+  //const imagePath = `/assets/${id}.jpg`;
   return (
     <div className="col">
       <div className="card">

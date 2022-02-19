@@ -1,3 +1,5 @@
+##
+Manejo de imagenes con webpackage context require.context()
 ## 
 Validacion rutas publicas y privadas 
 ##

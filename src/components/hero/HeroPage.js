@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useParams, Navigate, useNavigate } from "react-router-dom";
+import { heroImages } from "../../helpers/heroImages";
 import { getHeroById } from "../../selectors/getHeroById";
 
 export const HeroPage = () => {
@@ -17,7 +18,7 @@ export const HeroPage = () => {
   };
   const { id, superhero, publisher, alter_ego, first_appearance, characters } =
     hero;
-  const imagePath = `/assets/${id}.jpg`;
+  const imagePath = heroImages(`./${id}.jpg`); //utilizo el componente del webpackage para traer la imagen
   return (
     <div className="row mt-5">
       <div className="col-4">
