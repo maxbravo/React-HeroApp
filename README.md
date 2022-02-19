@@ -1,7 +1,11 @@
+## 
+Validacion rutas publicas y privadas 
+##
+Uso de localStorage
 ##
 Uso de formulario
 ##
-Uso de React Router
+Uso de React Router - useLocation - useNavigation
 ##
 Use Memo
 ##

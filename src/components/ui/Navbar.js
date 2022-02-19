@@ -1,66 +1,69 @@
-import React from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../auth/autContext";
+import { types } from "../../types/types";
 
 export const Navbar = () => {
+  const { user, dispatchUser } = useContext(AuthContext); //en el contexto tengo el user(objeto) y el dispatch
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-        navigate('/login',{
-            replace: true
-          });
-    }
+  const handleLogout = () => {
+    dispatchUser({ type: types.logout });
 
-    return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-            
-            <Link 
-                className="navbar-brand" 
-                to="/"
-            >
-                Asociaciones
-            </Link>
+    navigate("/login", {
+      replace: true,
+    });
+  };
 
-            <div className="navbar-collapse">
-                <div className="navbar-nav">
+  return (
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+      <Link className="navbar-brand" to="/">
+        Asociaciones
+      </Link>
 
-                    <NavLink 
-                        className={ ( {isActive} ) => 'nav-item nav-link ' + ( isActive ? 'active' : '') }
-                        to="/marvel"
-                    >
-                        Marvel
-                    </NavLink>
+      <div className="navbar-collapse">
+        <div className="navbar-nav">
+          <NavLink
+            className={({ isActive }) =>
+              "nav-item nav-link " + (isActive ? "active" : "")
+            }
+            to="/marvel"
+          >
+            Marvel
+          </NavLink>
 
-                    <NavLink 
-                        className={ ( {isActive} ) => 'nav-item nav-link ' + ( isActive ? 'active' : '') }
-                        to="/dc"
-                    >
-                        DC
-                    </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              "nav-item nav-link " + (isActive ? "active" : "")
+            }
+            to="/dc"
+          >
+            DC
+          </NavLink>
 
-                    <NavLink 
-                        className={ ( {isActive} ) => 'nav-item nav-link ' + ( isActive ? 'active' : '') }
-                        to="/search"
-                    >
-                        Search
-                    </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              "nav-item nav-link " + (isActive ? "active" : "")
+            }
+            to="/search"
+          >
+            Search
+          </NavLink>
+        </div>
+      </div>
 
-                </div>
-            </div>
-
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
-                <ul className="navbar-nav ml-auto">
-                    <span className='nav-item nav-link text-info'>
-                        Max
-                    </span>
-                    <button 
-                        className="nav-item nav-link btn btn-danger" 
-                        onClick={ handleLogout }
-                    >
-                        Logout
-                    </button>
-                </ul>
-            </div>
-        </nav>
-    )
-}
+      <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
+        <ul className="navbar-nav ml-auto">
+          <span className="nav-item nav-link text-info">{user.name}</span>
+          <button
+            className="nav-item nav-link btn btn-danger"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </ul>
+      </div>
+    </nav>
+  );
+};
